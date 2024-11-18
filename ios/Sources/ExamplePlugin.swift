@@ -18,11 +18,7 @@ class ExamplePlugin: Plugin {
   
   @objc public func createFile(_ invoke: Invoke) throws {
     //parse args
-    do {
-      let args = try invoke.parseArgs(FSArgs.self)
-    } catch {
-      invoke.reject("Could not parse file args")
-    }
+    let args = try invoke.parseArgs(FSArgs.self) 
 
     //perform argument validation here:
     guard let pathString = args.path else {
@@ -30,7 +26,7 @@ class ExamplePlugin: Plugin {
       return
     }
     
-    guard let contents = args.path else {
+    guard let contents = args.contents else {
       invoke.reject("Could not parse contents from FSArgs")
       return
     }
