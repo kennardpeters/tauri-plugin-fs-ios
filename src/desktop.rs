@@ -25,4 +25,10 @@ impl<R: Runtime> FsIos<R> {
       value: Some("success".to_string()),
     })
   }
+  
+  pub fn read_file(&self, payload: FSRequest) -> crate::Result<FSResponse> {
+    Ok(FSResponse {
+      value: Some("success".to_string()),
+    })
+  }
 }

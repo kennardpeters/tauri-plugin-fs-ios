@@ -4,6 +4,7 @@ Default permissions for the plugin
 
 - `allow-ping`
 - `allow-create-file`
+- `allow-read-file`
 
 ## Permission Table
 
@@ -88,6 +89,32 @@ Enables the ping command without any pre-configured scope.
 <td>
 
 Denies the ping command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+`fs-ios:allow-read-file`
+
+</td>
+<td>
+
+Enables the read_file command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+`fs-ios:deny-read-file`
+
+</td>
+<td>
+
+Denies the read_file command without any pre-configured scope.
 
 </td>
 </tr>

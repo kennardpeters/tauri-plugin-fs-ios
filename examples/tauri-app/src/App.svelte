@@ -1,6 +1,6 @@
 <script>
   import Greet from './lib/Greet.svelte'
-  import { ping, createFile } from 'tauri-plugin-fs-ios-api'
+  import { ping, createFile, readFile } from 'tauri-plugin-fs-ios-api'
 
 	let response = ''
 
@@ -13,7 +13,11 @@
 	}
 	
 	function _createFile() {
-		createFile("test_markdown.md", "Pong!").then(updateResponse).catch(updateResponse)
+		createFile("test_markdown.md", "Contents of file!").then(updateResponse).catch(updateResponse)
+	}
+	
+	function _readFile() {
+		readFile("test_markdown.md", "").then(updateResponse).catch(updateResponse)
 	}
 </script>
 
@@ -43,6 +47,7 @@
   <div>
     <button on:click="{_ping}">Ping</button>
     <button on:click="{_createFile}">Create file</button>
+    <button on:click="{_readFile}">Read file</button>
     <div>{@html response}</div>
   </div>
 

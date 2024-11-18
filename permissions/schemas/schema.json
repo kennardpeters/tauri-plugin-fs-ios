@@ -325,6 +325,16 @@
           "const": "deny-ping"
         },
         {
+          "description": "Enables the read_file command without any pre-configured scope.",
+          "type": "string",
+          "const": "allow-read-file"
+        },
+        {
+          "description": "Denies the read_file command without any pre-configured scope.",
+          "type": "string",
+          "const": "deny-read-file"
+        },
+        {
           "description": "Default permissions for the plugin",
           "type": "string",
           "const": "default"

@@ -12,9 +12,19 @@ export async function createFile(
   path: string,
   contents: string,
 ): Promise<string | null> {
-  console.log("path");
-  console.log("contents");
   return await invoke<{ value?: string }>("plugin:fs-ios|create_file", {
+    payload: {
+      path,
+      contents,
+    },
+  }).then((r) => (r.value ? r.value : null));
+}
+
+export async function readFile(
+  path: string,
+  contents: string,
+): Promise<string | null> {
+  return await invoke<{ value?: string }>("plugin:fs-ios|read_file", {
     payload: {
       path,
       contents,
