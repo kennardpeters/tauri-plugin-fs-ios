@@ -13,7 +13,7 @@ class FSArgs: Decodable {
   let contents: String?
 }
 
-class ExamplePlugin: Plugin {
+class FSPlugin: Plugin {
   @objc public func ping(_ invoke: Invoke) throws {
     //parse args
     let args = try invoke.parseArgs(PingArgs.self)
@@ -95,5 +95,5 @@ class ExamplePlugin: Plugin {
 
 @_cdecl("init_plugin_fs_ios")
 func initPlugin() -> Plugin {
-  return ExamplePlugin()
+  return FSPlugin()
 }

@@ -1,8 +1,8 @@
 import XCTest
-@testable import ExamplePlugin
+@testable import FSPlugin
 
-final class ExamplePluginTests: XCTestCase {
+final class FSPluginTests: XCTestCase {
     func testExample() throws {
-        let plugin = ExamplePlugin()
+        let plugin = FSPlugin()
     }
 }
