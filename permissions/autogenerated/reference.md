@@ -3,6 +3,7 @@
 Default permissions for the plugin
 
 - `allow-ping`
+- `allow-create-file`
 
 ## Permission Table
 
@@ -12,6 +13,58 @@ Default permissions for the plugin
 <th>Description</th>
 </tr>
 
+
+<tr>
+<td>
+
+`fs-ios:allow-createFile`
+
+</td>
+<td>
+
+Enables the createFile command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+`fs-ios:deny-createFile`
+
+</td>
+<td>
+
+Denies the createFile command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+`fs-ios:allow-create-file`
+
+</td>
+<td>
+
+Enables the create_file command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+`fs-ios:deny-create-file`
+
+</td>
+<td>
+
+Denies the create_file command without any pre-configured scope.
+
+</td>
+</tr>
 
 <tr>
 <td>

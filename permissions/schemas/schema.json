@@ -295,6 +295,26 @@
       "type": "string",
       "oneOf": [
         {
+          "description": "Enables the createFile command without any pre-configured scope.",
+          "type": "string",
+          "const": "allow-createFile"
+        },
+        {
+          "description": "Denies the createFile command without any pre-configured scope.",
+          "type": "string",
+          "const": "deny-createFile"
+        },
+        {
+          "description": "Enables the create_file command without any pre-configured scope.",
+          "type": "string",
+          "const": "allow-create-file"
+        },
+        {
+          "description": "Denies the create_file command without any pre-configured scope.",
+          "type": "string",
+          "const": "deny-create-file"
+        },
+        {
           "description": "Enables the ping command without any pre-configured scope.",
           "type": "string",
           "const": "allow-ping"

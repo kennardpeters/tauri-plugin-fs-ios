@@ -31,4 +31,11 @@ impl<R: Runtime> FsIos<R> {
       .run_mobile_plugin("ping", payload)
       .map_err(Into::into)
   }
+  pub fn create_file(&self, payload: FSRequest) -> crate::Result<FSResponse> {
+    println!("create_file mobile.rs: {:?}", payload);
+    self
+      .0
+      .run_mobile_plugin("createFile", payload)
+      .map_err(Into::into)
+  }
 }

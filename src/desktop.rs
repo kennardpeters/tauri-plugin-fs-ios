@@ -19,4 +19,10 @@ impl<R: Runtime> FsIos<R> {
       value: payload.value,
     })
   }
+  
+  pub fn create_file(&self, payload: FSRequest) -> crate::Result<FSResponse> {
+    Ok(FSResponse {
+      value: Some("success".to_string()),
+    })
+  }
 }

@@ -2,9 +2,13 @@ import SwiftRs
 import Tauri
 import UIKit
 import WebKit
+import Foundation
+
+class PingArgs: Decodable {
+  let value: String?
+}
 
 class FSArgs: Decodable {
-  let value: String?
   let path: String?
   let contents: String?
 }
@@ -12,7 +16,7 @@ class FSArgs: Decodable {
 class ExamplePlugin: Plugin {
   @objc public func ping(_ invoke: Invoke) throws {
     //parse args
-    let args = try invoke.parseArgs(FSArgs.self)
+    let args = try invoke.parseArgs(PingArgs.self)
     invoke.resolve(["value": args.value ?? ""])
   }
   
@@ -47,27 +51,27 @@ class ExamplePlugin: Plugin {
       invoke.reject("Could not write to file \(fileURL.path)")
     }
 
-    invoke.resolve(["value": args.value ?? ""])
+    invoke.resolve(["value": "success from mobile"])
   }
   
   @objc public func readFile(_ invoke: Invoke) throws {
     let args = try invoke.parseArgs(FSArgs.self)
-    invoke.resolve(["value": args.value ?? ""])
+    invoke.resolve(["value": args.contents ?? ""])
   }
 
   @objc public func writeFile(_ invoke: Invoke) throws {
     let args = try invoke.parseArgs(FSArgs.self)
-    invoke.resolve(["value": args.value ?? ""])
+    invoke.resolve(["value": args.contents ?? ""])
   }
   
   @objc public func appendToFile(_ invoke: Invoke) throws {
     let args = try invoke.parseArgs(FSArgs.self)
-    invoke.resolve(["value": args.value ?? ""])
+    invoke.resolve(["value": args.contents ?? ""])
   }
 
   @objc public func deleteFile(_ invoke: Invoke) throws {
     let args = try invoke.parseArgs(FSArgs.self)
-    invoke.resolve(["value": args.value ?? ""])
+    invoke.resolve(["value": args.contents ?? ""])
   }
   
   @objc public func createDir(_ invoke: Invoke) throws {
@@ -75,17 +79,17 @@ class ExamplePlugin: Plugin {
   
   @objc public func readDir(_ invoke: Invoke) throws {
     let args = try invoke.parseArgs(FSArgs.self)
-    invoke.resolve(["value": args.value ?? ""])
+    invoke.resolve(["value": args.contents ?? ""])
   }
 
   @objc public func updateDir(_ invoke: Invoke) throws {
     let args = try invoke.parseArgs(FSArgs.self)
-    invoke.resolve(["value": args.value ?? ""])
+    invoke.resolve(["value": args.contents ?? ""])
   }
 
   @objc public func deleteDir(_ invoke: Invoke) throws {
     let args = try invoke.parseArgs(FSArgs.self)
-    invoke.resolve(["value": args.value ?? ""])
+    invoke.resolve(["value": args.contents ?? ""])
   }
 }
 

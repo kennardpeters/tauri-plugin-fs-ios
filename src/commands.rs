@@ -11,3 +11,11 @@ pub(crate) async fn ping<R: Runtime>(
 ) -> Result<PingResponse> {
     app.fs_ios().ping(payload)
 }
+
+#[command]
+pub(crate) async fn create_file<R: Runtime>(
+    app: AppHandle<R>,
+    payload: FSRequest,
+) -> Result<FSResponse> {
+    app.fs_ios().create_file(payload)
+}

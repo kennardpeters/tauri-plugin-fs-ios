@@ -1,0 +1,13 @@
+# Automatically generated - DO NOT EDIT!
+
+"$schema" = "../../schemas/schema.json"
+
+[[permission]]
+identifier = "allow-createFile"
+description = "Enables the createFile command without any pre-configured scope."
+commands.allow = ["createFile"]
+
+[[permission]]
+identifier = "deny-createFile"
+description = "Denies the createFile command without any pre-configured scope."
+commands.deny = ["createFile"]
