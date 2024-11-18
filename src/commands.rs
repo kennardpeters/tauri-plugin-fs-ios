@@ -27,3 +27,11 @@ pub(crate) async fn read_file<R: Runtime>(
 ) -> Result<FSResponse> {
     app.fs_ios().read_file(payload)
 }
+
+#[command]
+pub(crate) async fn delete_file<R: Runtime>(
+    app: AppHandle<R>,
+    payload: FSRequest,
+) -> Result<FSResponse> {
+    app.fs_ios().delete_file(payload)
+}

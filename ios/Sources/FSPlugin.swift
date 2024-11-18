@@ -107,7 +107,37 @@ class FSPlugin: Plugin {
 
   @objc public func deleteFile(_ invoke: Invoke) throws {
     let args = try invoke.parseArgs(FSArgs.self)
-    invoke.resolve(["value": args.contents ?? ""])
+    
+    //perform argument validation here:
+    guard let pathString = args.path else {
+      invoke.reject("Could not parse path from FSArgs")
+      return
+    }
+
+    if pathString == "" {
+      invoke.reject("Path cannot be empty")
+      return
+    }
+    
+    //Initialize file manager and access documents url
+    let fm = FileManager.default
+    guard let documentsURL = fm.urls(for: .documentDirectory, in: .userDomainMask).first else {
+      invoke.reject("Could not open Documents directory")
+      return
+    }
+    
+    let fileURL = documentsURL.appendingPathComponent(pathString)
+
+    if !fm.fileExists(atPath: fileURL.path) {
+      invoke.resolve(["value": "file did not exist"])
+    }
+    
+    do {
+      try fm.removeItem(at: fileURL)
+      invoke.resolve(["value": "successfully removed"])
+    } catch {
+      invoke.reject("Could not delete file \(fileURL.path)")
+    }
   }
   
   @objc public func createDir(_ invoke: Invoke) throws {

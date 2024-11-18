@@ -1,7 +1,9 @@
+use std::{fmt::Debug, io::ErrorKind};
+
 use serde::de::DeserializeOwned;
 use tauri::{plugin::PluginApi, AppHandle, Runtime};
 
-use crate::models::*;
+use crate::{error, models::*};
 
 pub fn init<R: Runtime, C: DeserializeOwned>(
   app: &AppHandle<R>,
@@ -30,5 +32,9 @@ impl<R: Runtime> FsIos<R> {
     Ok(FSResponse {
       value: Some("success".to_string()),
     })
+  }
+  
+  pub fn delete_file(&self, payload: FSRequest) -> crate::Result<FSResponse> {
+    Err(error::Error::Io(std::io::Error::new(ErrorKind::Unsupported, "Unsupported Operation")))
   }
 }

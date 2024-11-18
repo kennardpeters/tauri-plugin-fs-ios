@@ -5,6 +5,7 @@ Default permissions for the plugin
 - `allow-ping`
 - `allow-create-file`
 - `allow-read-file`
+- `allow-delete-file`
 
 ## Permission Table
 
@@ -63,6 +64,32 @@ Enables the create_file command without any pre-configured scope.
 <td>
 
 Denies the create_file command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+`fs-ios:allow-delete-file`
+
+</td>
+<td>
+
+Enables the delete_file command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+`fs-ios:deny-delete-file`
+
+</td>
+<td>
+
+Denies the delete_file command without any pre-configured scope.
 
 </td>
 </tr>

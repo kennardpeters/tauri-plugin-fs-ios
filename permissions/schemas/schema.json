@@ -315,6 +315,16 @@
           "const": "deny-create-file"
         },
         {
+          "description": "Enables the delete_file command without any pre-configured scope.",
+          "type": "string",
+          "const": "allow-delete-file"
+        },
+        {
+          "description": "Denies the delete_file command without any pre-configured scope.",
+          "type": "string",
+          "const": "deny-delete-file"
+        },
+        {
           "description": "Enables the ping command without any pre-configured scope.",
           "type": "string",
           "const": "allow-ping"
