@@ -67,3 +67,15 @@ export async function listDir(
     },
   }).then((r) => (r.value ? r.value : null));
 }
+
+export async function deleteDir(
+  path: string,
+  contents: string,
+): Promise<string | null> {
+  return await invoke<{ value?: string }>("plugin:fs-ios|delete_dir", {
+    payload: {
+      path,
+      contents,
+    },
+  }).then((r) => (r.value ? r.value : null));
+}

@@ -97,11 +97,15 @@ class FSPlugin: Plugin {
 
   @objc public func writeFile(_ invoke: Invoke) throws {
     let args = try invoke.parseArgs(FSArgs.self)
+    //needed?
     invoke.resolve(["value": args.contents ?? ""])
   }
   
   @objc public func appendToFile(_ invoke: Invoke) throws {
     let args = try invoke.parseArgs(FSArgs.self)
+    //open file
+    //append contents to existing file contents
+    //save file
     invoke.resolve(["value": args.contents ?? ""])
   }
 
@@ -216,13 +220,42 @@ class FSPlugin: Plugin {
   }
 
   @objc public func renameDir(_ invoke: Invoke) throws {
+    /* TODO: need to add specific args for this */
     let args = try invoke.parseArgs(FSArgs.self)
+    //fm.moveItem(at: , to: )
     invoke.resolve(["value": args.contents ?? ""])
   }
 
   @objc public func deleteDir(_ invoke: Invoke) throws {
     let args = try invoke.parseArgs(FSArgs.self)
-    invoke.resolve(["value": args.contents ?? ""])
+    
+    //perform argument validation here:
+    guard let pathString = args.path else {
+      invoke.reject("Could not parse path from FSArgs")
+      return
+    }
+
+    if pathString == "" {
+      invoke.reject("Path cannot be empty")
+      return
+    }
+    
+    //Initialize file manager and access documents url
+    let fm = FileManager.default
+    guard let documentsURL = fm.urls(for: .documentDirectory, in: .userDomainMask).first else {
+      invoke.reject("Could not open Documents directory")
+      return
+    }
+    
+    let fileURL = documentsURL.appendingPathComponent(pathString)
+
+    do {
+      try fm.removeItem(at: fileURL)
+      invoke.resolve(["value": "successfully deleted directory: \(fileURL.path)"])
+    } catch {
+      invoke.reject("Could not create directory")
+      return
+    }
   }
 }
 

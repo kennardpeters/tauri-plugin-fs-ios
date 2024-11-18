@@ -45,4 +45,8 @@ impl<R: Runtime> FsIos<R> {
   pub fn list_dir(&self, payload: FSRequest) -> crate::Result<FSResponse> {
     Err(error::Error::Io(std::io::Error::new(ErrorKind::Unsupported, "Unsupported Operation")))
   }
+  
+  pub fn delete_dir(&self, payload: FSRequest) -> crate::Result<FSResponse> {
+    Err(error::Error::Io(std::io::Error::new(ErrorKind::Unsupported, "Unsupported Operation")))
+  }
 }
