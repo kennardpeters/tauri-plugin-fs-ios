@@ -43,3 +43,11 @@ pub(crate) async fn create_dir<R: Runtime>(
 ) -> Result<FSResponse> {
     app.fs_ios().create_dir(payload)
 }
+
+#[command]
+pub(crate) async fn list_dir<R: Runtime>(
+    app: AppHandle<R>,
+    payload: FSRequest,
+) -> Result<FSResponse> {
+    app.fs_ios().list_dir(payload)
+}

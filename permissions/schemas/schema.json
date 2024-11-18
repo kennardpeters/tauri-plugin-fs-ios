@@ -335,6 +335,16 @@
           "const": "deny-delete-file"
         },
         {
+          "description": "Enables the list_dir command without any pre-configured scope.",
+          "type": "string",
+          "const": "allow-list-dir"
+        },
+        {
+          "description": "Denies the list_dir command without any pre-configured scope.",
+          "type": "string",
+          "const": "deny-list-dir"
+        },
+        {
           "description": "Enables the ping command without any pre-configured scope.",
           "type": "string",
           "const": "allow-ping"

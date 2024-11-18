@@ -7,6 +7,7 @@ Default permissions for the plugin
 - `allow-read-file`
 - `allow-delete-file`
 - `allow-create-dir`
+- `allow-list-dir`
 
 ## Permission Table
 
@@ -117,6 +118,32 @@ Enables the delete_file command without any pre-configured scope.
 <td>
 
 Denies the delete_file command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+`fs-ios:allow-list-dir`
+
+</td>
+<td>
+
+Enables the list_dir command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+`fs-ios:deny-list-dir`
+
+</td>
+<td>
+
+Denies the list_dir command without any pre-configured scope.
 
 </td>
 </tr>

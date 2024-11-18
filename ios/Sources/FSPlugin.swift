@@ -172,12 +172,50 @@ class FSPlugin: Plugin {
     }
   }
   
-  @objc public func readDir(_ invoke: Invoke) throws {
+  @objc public func listDir(_ invoke: Invoke) throws {
     let args = try invoke.parseArgs(FSArgs.self)
-    invoke.resolve(["value": args.contents ?? ""])
+    
+    //perform argument validation here:
+    guard let pathString = args.path else {
+      invoke.reject("Could not parse path from FSArgs")
+      return
+    }
+
+    //If path is empty it will the documents directory
+
+    //Initialize file manager and access documents url
+    let fm = FileManager.default
+    guard let documentsURL = fm.urls(for: .documentDirectory, in: .userDomainMask).first else {
+      invoke.reject("Could not open Documents directory")
+      return
+    }
+
+    var fileURL: URL;
+
+    if pathString == "" {
+      fileURL = documentsURL;
+    } else {
+      fileURL = documentsURL.appendingPathComponent(pathString)
+    }
+
+    do {
+      let directoryList = try fm.contentsOfDirectory(atPath: fileURL.path)
+
+      var dirString = ""
+      for item in directoryList {
+        dirString += "\(item), "
+      }
+      
+      invoke.resolve(["value": "\(dirString)"])
+      return
+      
+    } catch {
+      invoke.reject("Could not read directory: \(fileURL)")
+    }
+
   }
 
-  @objc public func updateDir(_ invoke: Invoke) throws {
+  @objc public func renameDir(_ invoke: Invoke) throws {
     let args = try invoke.parseArgs(FSArgs.self)
     invoke.resolve(["value": args.contents ?? ""])
   }

@@ -55,3 +55,15 @@ export async function createDir(
     },
   }).then((r) => (r.value ? r.value : null));
 }
+
+export async function listDir(
+  path: string,
+  contents: string,
+): Promise<string | null> {
+  return await invoke<{ value?: string }>("plugin:fs-ios|list_dir", {
+    payload: {
+      path,
+      contents,
+    },
+  }).then((r) => (r.value ? r.value : null));
+}
