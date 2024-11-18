@@ -43,3 +43,15 @@ export async function deleteFile(
     },
   }).then((r) => (r.value ? r.value : null));
 }
+
+export async function createDir(
+  path: string,
+  contents: string,
+): Promise<string | null> {
+  return await invoke<{ value?: string }>("plugin:fs-ios|create_dir", {
+    payload: {
+      path,
+      contents,
+    },
+  }).then((r) => (r.value ? r.value : null));
+}

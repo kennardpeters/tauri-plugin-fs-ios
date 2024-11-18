@@ -141,6 +141,35 @@ class FSPlugin: Plugin {
   }
   
   @objc public func createDir(_ invoke: Invoke) throws {
+    let args = try invoke.parseArgs(FSArgs.self)
+    
+    //perform argument validation here:
+    guard let pathString = args.path else {
+      invoke.reject("Could not parse path from FSArgs")
+      return
+    }
+
+    if pathString == "" {
+      invoke.reject("Path cannot be empty")
+      return
+    }
+    
+    //Initialize file manager and access documents url
+    let fm = FileManager.default
+    guard let documentsURL = fm.urls(for: .documentDirectory, in: .userDomainMask).first else {
+      invoke.reject("Could not open Documents directory")
+      return
+    }
+    
+    let newDirectoryURL = documentsURL.appendingPathComponent(pathString)
+
+    do {
+      try fm.createDirectory(at: newDirectoryURL, withIntermediateDirectories: true, attributes: nil)
+      invoke.resolve(["value": "successfully created directory: \(newDirectoryURL.path)"])
+    } catch {
+      invoke.reject("Could not create directory")
+      return
+    }
   }
   
   @objc public func readDir(_ invoke: Invoke) throws {

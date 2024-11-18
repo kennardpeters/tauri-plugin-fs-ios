@@ -52,4 +52,11 @@ impl<R: Runtime> FsIos<R> {
       .run_mobile_plugin("deleteFile", payload)
       .map_err(Into::into)
   }
+  
+  pub fn create_dir(&self, payload: FSRequest) -> crate::Result<FSResponse> {
+    self
+      .0
+      .run_mobile_plugin("createDir", payload)
+      .map_err(Into::into)
+  }
 }

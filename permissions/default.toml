@@ -1,3 +1,3 @@
 [default]
 description = "Default permissions for the plugin"
-permissions = ["allow-ping", "allow-create-file", "allow-read-file", "allow-delete-file"]
+permissions = ["allow-ping", "allow-create-file", "allow-read-file", "allow-delete-file", "allow-create-dir"]

@@ -35,3 +35,11 @@ pub(crate) async fn delete_file<R: Runtime>(
 ) -> Result<FSResponse> {
     app.fs_ios().delete_file(payload)
 }
+
+#[command]
+pub(crate) async fn create_dir<R: Runtime>(
+    app: AppHandle<R>,
+    payload: FSRequest,
+) -> Result<FSResponse> {
+    app.fs_ios().create_dir(payload)
+}

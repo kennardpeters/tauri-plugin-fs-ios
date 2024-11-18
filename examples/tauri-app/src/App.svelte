@@ -1,6 +1,6 @@
 <script>
   import Greet from './lib/Greet.svelte'
-  import { ping, createFile, readFile, deleteFile } from 'tauri-plugin-fs-ios-api'
+  import { ping, createFile, readFile, deleteFile, createDir } from 'tauri-plugin-fs-ios-api'
 
 	let response = ''
 
@@ -23,6 +23,11 @@
 	function _deleteFile() {
 		deleteFile("test_markdown.md", "").then(updateResponse).catch(updateResponse)
 	}
+	
+	function _createDir() {
+		createDir("markdown", "").then(updateResponse).catch(updateResponse)
+	}
+
 </script>
 
 <main class="container">
@@ -53,6 +58,7 @@
     <button on:click="{_createFile}">Create file</button>
     <button on:click="{_readFile}">Read file</button>
     <button on:click="{_deleteFile}">Delete file</button>
+    <button on:click="{_createDir}">Create Directory</button>
     <div>{@html response}</div>
   </div>
 

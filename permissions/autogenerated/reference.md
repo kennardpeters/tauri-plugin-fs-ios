@@ -6,6 +6,7 @@ Default permissions for the plugin
 - `allow-create-file`
 - `allow-read-file`
 - `allow-delete-file`
+- `allow-create-dir`
 
 ## Permission Table
 
@@ -38,6 +39,32 @@ Enables the createFile command without any pre-configured scope.
 <td>
 
 Denies the createFile command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+`fs-ios:allow-create-dir`
+
+</td>
+<td>
+
+Enables the create_dir command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+`fs-ios:deny-create-dir`
+
+</td>
+<td>
+
+Denies the create_dir command without any pre-configured scope.
 
 </td>
 </tr>

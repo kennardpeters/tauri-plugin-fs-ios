@@ -305,6 +305,16 @@
           "const": "deny-createFile"
         },
         {
+          "description": "Enables the create_dir command without any pre-configured scope.",
+          "type": "string",
+          "const": "allow-create-dir"
+        },
+        {
+          "description": "Denies the create_dir command without any pre-configured scope.",
+          "type": "string",
+          "const": "deny-create-dir"
+        },
+        {
           "description": "Enables the create_file command without any pre-configured scope.",
           "type": "string",
           "const": "allow-create-file"
