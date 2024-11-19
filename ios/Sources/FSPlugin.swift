@@ -101,9 +101,48 @@ class FSPlugin: Plugin {
   }
 
   @objc public func writeFile(_ invoke: Invoke) throws {
-    let args = try invoke.parseArgs(FSArgs.self)
     //needed?
-    invoke.resolve(["value": args.contents ?? ""])
+    //parse args
+    let args = try invoke.parseArgs(FSArgs.self) 
+
+    //perform argument validation here:
+    guard let pathString = args.path else {
+      invoke.reject("Could not parse path from FSArgs")
+      return
+    }
+    
+    if pathString == "" {
+      invoke.reject("Path cannot be empty")
+      return
+    }
+    
+    guard let contents = args.contents else {
+      invoke.reject("Could not parse contents from FSArgs")
+      return
+    }
+    
+    if contents == "" {
+      invoke.reject("Contents cannot be empty")
+      return
+    }
+
+    //Initialize file manager and access documents url
+    let fm = FileManager.default
+    guard let documentsURL = fm.urls(for: .documentDirectory, in: .userDomainMask).first else {
+      invoke.reject("Could not open Documents directory")
+      return
+    }
+
+
+    //Append fileName to documents path component
+    let fileURL = documentsURL.appendingPathComponent(pathString)
+    do {
+      try contents.write(to: fileURL, atomically: true, encoding: .utf8)
+      invoke.resolve(["value": "successfully wrote to \(fileURL.path)"])
+    } catch {
+      invoke.reject("Could not write to file \(fileURL.path)")
+    }
+
   }
   
   @objc public func appendToFile(_ invoke: Invoke) throws {

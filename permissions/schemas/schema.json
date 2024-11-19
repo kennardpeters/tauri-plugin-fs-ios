@@ -385,6 +385,16 @@
           "const": "deny-rename-dir"
         },
         {
+          "description": "Enables the write_file command without any pre-configured scope.",
+          "type": "string",
+          "const": "allow-write-file"
+        },
+        {
+          "description": "Denies the write_file command without any pre-configured scope.",
+          "type": "string",
+          "const": "deny-write-file"
+        },
+        {
           "description": "Default permissions for the plugin",
           "type": "string",
           "const": "default"

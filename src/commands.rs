@@ -29,6 +29,14 @@ pub(crate) async fn read_file<R: Runtime>(
 }
 
 #[command]
+pub(crate) async fn write_file<R: Runtime>(
+    app: AppHandle<R>,
+    payload: FSRequest,
+) -> Result<FSResponse> {
+    app.fs_ios().write_file(payload)
+}
+
+#[command]
 pub(crate) async fn delete_file<R: Runtime>(
     app: AppHandle<R>,
     payload: FSRequest,

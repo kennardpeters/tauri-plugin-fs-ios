@@ -23,15 +23,15 @@ impl<R: Runtime> FsIos<R> {
   }
   
   pub fn create_file(&self, payload: FSRequest) -> crate::Result<FSResponse> {
-    Ok(FSResponse {
-      value: Some("success".to_string()),
-    })
+    Err(error::Error::Io(std::io::Error::new(ErrorKind::Unsupported, "Unsupported Operation")))
   }
   
   pub fn read_file(&self, payload: FSRequest) -> crate::Result<FSResponse> {
-    Ok(FSResponse {
-      value: Some("success".to_string()),
-    })
+    Err(error::Error::Io(std::io::Error::new(ErrorKind::Unsupported, "Unsupported Operation")))
+  }
+  
+  pub fn write_file(&self, payload: FSRequest) -> crate::Result<FSResponse> {
+    Err(error::Error::Io(std::io::Error::new(ErrorKind::Unsupported, "Unsupported Operation")))
   }
   
   pub fn delete_file(&self, payload: FSRequest) -> crate::Result<FSResponse> {

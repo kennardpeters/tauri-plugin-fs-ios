@@ -46,6 +46,13 @@ impl<R: Runtime> FsIos<R> {
       .map_err(Into::into)
   }
   
+  pub fn write_file(&self, payload: FSRequest) -> crate::Result<FSResponse> {
+    self
+      .0
+      .run_mobile_plugin("writeFile", payload)
+      .map_err(Into::into)
+  }
+  
   pub fn delete_file(&self, payload: FSRequest) -> crate::Result<FSResponse> {
     self
       .0
