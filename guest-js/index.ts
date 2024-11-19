@@ -79,3 +79,15 @@ export async function deleteDir(
     },
   }).then((r) => (r.value ? r.value : null));
 }
+
+export async function renameDir(
+  path: string,
+  newPath: string,
+): Promise<string | null> {
+  return await invoke<{ value?: string }>("plugin:fs-ios|rename_dir", {
+    payload: {
+      path,
+      newPath,
+    },
+  }).then((r) => (r.value ? r.value : null));
+}

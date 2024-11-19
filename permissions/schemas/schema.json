@@ -375,6 +375,16 @@
           "const": "deny-read-file"
         },
         {
+          "description": "Enables the rename_dir command without any pre-configured scope.",
+          "type": "string",
+          "const": "allow-rename-dir"
+        },
+        {
+          "description": "Denies the rename_dir command without any pre-configured scope.",
+          "type": "string",
+          "const": "deny-rename-dir"
+        },
+        {
           "description": "Default permissions for the plugin",
           "type": "string",
           "const": "default"

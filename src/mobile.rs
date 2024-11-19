@@ -74,4 +74,11 @@ impl<R: Runtime> FsIos<R> {
       .run_mobile_plugin("deleteDir", payload)
       .map_err(Into::into)
   }
+  
+  pub fn rename_dir(&self, payload: RenameRequest) -> crate::Result<FSResponse> {
+    self
+      .0
+      .run_mobile_plugin("renameDir", payload)
+      .map_err(Into::into)
+  }
 }

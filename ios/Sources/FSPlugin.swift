@@ -13,6 +13,11 @@ class FSArgs: Decodable {
   let contents: String?
 }
 
+class RenameArgs: Decodable {
+  let path: String?
+  let newPath: String?
+}
+
 class FSPlugin: Plugin {
   @objc public func ping(_ invoke: Invoke) throws {
     //parse args
@@ -220,10 +225,48 @@ class FSPlugin: Plugin {
   }
 
   @objc public func renameDir(_ invoke: Invoke) throws {
-    /* TODO: need to add specific args for this */
-    let args = try invoke.parseArgs(FSArgs.self)
-    //fm.moveItem(at: , to: )
-    invoke.resolve(["value": args.contents ?? ""])
+    let args = try invoke.parseArgs(RenameArgs.self)
+    
+    //perform argument validation here:
+    guard let pathString = args.path else {
+      invoke.reject("Could not parse path from RenameArgs")
+      return
+    }
+    
+    if pathString == "" {
+      invoke.reject("Path cannot be empty")
+      return
+    }
+
+    //perform argument validation here:
+    guard let newPathString = args.newPath else {
+      invoke.reject("Could not parse newPath from RenameArgs")
+      return
+    }
+    
+    if newPathString == "" {
+      invoke.reject("newPath cannot be empty")
+      return
+    }
+
+    
+    //Initialize file manager and access documents url
+    let fm = FileManager.default
+    guard let documentsURL = fm.urls(for: .documentDirectory, in: .userDomainMask).first else {
+      invoke.reject("Could not open Documents directory")
+      return
+    }
+    
+    let currDirectoryURL = documentsURL.appendingPathComponent(pathString)
+    let newDirectoryURL = documentsURL.appendingPathComponent(newPathString)
+
+    do {
+      try fm.moveItem(at: currDirectoryURL, to: newDirectoryURL)
+      invoke.resolve(["value": "successfully renamed directory: \(newDirectoryURL.path)"])
+    } catch {
+      invoke.reject("Could not rename directory")
+      return
+    }
   }
 
   @objc public func deleteDir(_ invoke: Invoke) throws {
@@ -253,7 +296,7 @@ class FSPlugin: Plugin {
       try fm.removeItem(at: fileURL)
       invoke.resolve(["value": "successfully deleted directory: \(fileURL.path)"])
     } catch {
-      invoke.reject("Could not create directory")
+      invoke.reject("Could not delete directory")
       return
     }
   }

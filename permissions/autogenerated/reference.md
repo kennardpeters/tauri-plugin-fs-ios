@@ -9,6 +9,7 @@ Default permissions for the plugin
 - `allow-create-dir`
 - `allow-list-dir`
 - `allow-delete-dir`
+- `allow-rename-dir`
 
 ## Permission Table
 
@@ -223,6 +224,32 @@ Enables the read_file command without any pre-configured scope.
 <td>
 
 Denies the read_file command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+`fs-ios:allow-rename-dir`
+
+</td>
+<td>
+
+Enables the rename_dir command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+`fs-ios:deny-rename-dir`
+
+</td>
+<td>
+
+Denies the rename_dir command without any pre-configured scope.
 
 </td>
 </tr>

@@ -59,3 +59,11 @@ pub(crate) async fn delete_dir<R: Runtime>(
 ) -> Result<FSResponse> {
     app.fs_ios().delete_dir(payload)
 }
+
+#[command]
+pub(crate) async fn rename_dir<R: Runtime>(
+    app: AppHandle<R>,
+    payload: RenameRequest,
+) -> Result<FSResponse> {
+    app.fs_ios().rename_dir(payload)
+}

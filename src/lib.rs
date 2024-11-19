@@ -35,7 +35,7 @@ impl<R: Runtime, T: Manager<R>> crate::FsIosExt<R> for T {
 /// Initializes the plugin.
 pub fn init<R: Runtime>() -> TauriPlugin<R> {
   Builder::new("fs-ios")
-    .invoke_handler(tauri::generate_handler![commands::ping, commands::create_file, commands::read_file, commands::delete_file, commands::create_dir, commands::list_dir, commands::delete_dir])
+    .invoke_handler(tauri::generate_handler![commands::ping, commands::create_file, commands::read_file, commands::delete_file, commands::create_dir, commands::list_dir, commands::delete_dir, commands::rename_dir])
     //.invoke_handler(tauri::generate_handler![commands::create_file])
     .setup(|app, api| {
       #[cfg(mobile)]
