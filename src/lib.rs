@@ -8,11 +8,11 @@ pub use models::*;
 #[cfg(desktop)]
 mod desktop;
 #[cfg(mobile)]
-mod mobile;
+pub mod mobile;
 
-mod commands;
+pub mod commands;
 mod error;
-mod models;
+pub mod models;
 
 pub use error::{Error, Result};
 
@@ -36,7 +36,6 @@ impl<R: Runtime, T: Manager<R>> crate::FsIosExt<R> for T {
 pub fn init<R: Runtime>() -> TauriPlugin<R> {
   Builder::new("fs-ios")
     .invoke_handler(tauri::generate_handler![commands::ping, commands::create_file, commands::read_file, commands::write_file, commands::append_to_file, commands::delete_file, commands::create_dir, commands::list_dir, commands::delete_dir, commands::rename_dir])
-    //.invoke_handler(tauri::generate_handler![commands::create_file])
     .setup(|app, api| {
       #[cfg(mobile)]
       let fs_ios = mobile::init(app, api)?;
