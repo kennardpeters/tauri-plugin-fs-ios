@@ -2,11 +2,13 @@
 name = "tauri-plugin-fs-ios"
 version = "0.1.0"
 authors = [ "You" ]
-description = ""
+description = "A plugin for accessing the filesystem on ios"
+respository = "https://github.com/kennardpeters/tauri-plugin-fs-ios"
 edition = "2021"
 rust-version = "1.77.2"
 exclude = ["/examples", "/webview-dist", "/webview-src", "/node_modules", "guest-js/", "dist-js/"]
 links = "tauri-plugin-fs-ios"
+license = "MIT"
 
 [dependencies]
 tauri = { version = "2.1.0" }
