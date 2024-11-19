@@ -147,10 +147,59 @@ class FSPlugin: Plugin {
   
   @objc public func appendToFile(_ invoke: Invoke) throws {
     let args = try invoke.parseArgs(FSArgs.self)
+
+    //perform argument validation here:
+    guard let pathString = args.path else {
+      invoke.reject("Could not parse path from FSArgs")
+      return
+    }
+
+    if pathString == "" {
+      invoke.reject("Path cannot be empty")
+      return
+    }
+    
+    //perform argument validation here:
+    guard let contentString = args.contents else {
+      invoke.reject("Could not parse contents from FSArgs")
+      return
+    }
+
+    if contentString == ""  {
+      invoke.reject("Content cannot be empty")
+      return
+    }
+    
+    //Initialize file manager and access documents url
+    let fm = FileManager.default
+    guard let documentsURL = fm.urls(for: .documentDirectory, in: .userDomainMask).first else {
+      invoke.reject("Could not open Documents directory")
+      return
+    }
+    
+    let fileURL = documentsURL.appendingPathComponent(pathString)
+    
     //open file
+    var existingContent = ""
+    do {
+      let fileContent = try String(contentsOf: fileURL, encoding: .utf8)
+      let unwrappedContent = fileContent.data(using: .utf8)!
+
+      existingContent = String(data: unwrappedContent, encoding: .utf8)!
+    } catch {
+      invoke.reject("Could not read from file \(fileURL.path)")
+    }
+
     //append contents to existing file contents
+    existingContent += contentString
+    
     //save file
-    invoke.resolve(["value": args.contents ?? ""])
+    do {
+      try existingContent.write(to: fileURL, atomically: true, encoding: .utf8)
+      invoke.resolve(["value": "successfully appended to \(fileURL.path)"])
+    } catch {
+      invoke.reject("Could not write to file \(fileURL.path)")
+    }
   }
 
   @objc public func deleteFile(_ invoke: Invoke) throws {

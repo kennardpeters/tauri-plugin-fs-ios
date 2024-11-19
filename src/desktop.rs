@@ -34,6 +34,10 @@ impl<R: Runtime> FsIos<R> {
     Err(error::Error::Io(std::io::Error::new(ErrorKind::Unsupported, "Unsupported Operation")))
   }
   
+  pub fn append_to_file(&self, payload: FSRequest) -> crate::Result<FSResponse> {
+    Err(error::Error::Io(std::io::Error::new(ErrorKind::Unsupported, "Unsupported Operation")))
+  }
+  
   pub fn delete_file(&self, payload: FSRequest) -> crate::Result<FSResponse> {
     Err(error::Error::Io(std::io::Error::new(ErrorKind::Unsupported, "Unsupported Operation")))
   }

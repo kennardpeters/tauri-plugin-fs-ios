@@ -6,6 +6,7 @@ Default permissions for the plugin
 - `allow-create-file`
 - `allow-read-file`
 - `allow-write-file`
+- `allow-append-to-file`
 - `allow-delete-file`
 - `allow-create-dir`
 - `allow-list-dir`
@@ -20,6 +21,32 @@ Default permissions for the plugin
 <th>Description</th>
 </tr>
 
+
+<tr>
+<td>
+
+`fs-ios:allow-append-to-file`
+
+</td>
+<td>
+
+Enables the append_to_file command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+`fs-ios:deny-append-to-file`
+
+</td>
+<td>
+
+Denies the append_to_file command without any pre-configured scope.
+
+</td>
+</tr>
 
 <tr>
 <td>

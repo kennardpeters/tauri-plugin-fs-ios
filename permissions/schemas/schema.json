@@ -295,6 +295,16 @@
       "type": "string",
       "oneOf": [
         {
+          "description": "Enables the append_to_file command without any pre-configured scope.",
+          "type": "string",
+          "const": "allow-append-to-file"
+        },
+        {
+          "description": "Denies the append_to_file command without any pre-configured scope.",
+          "type": "string",
+          "const": "deny-append-to-file"
+        },
+        {
           "description": "Enables the createFile command without any pre-configured scope.",
           "type": "string",
           "const": "allow-createFile"

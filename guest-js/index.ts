@@ -44,6 +44,18 @@ export async function writeFile(
   }).then((r) => (r.value ? r.value : null));
 }
 
+export async function appendToFile(
+  path: string,
+  contents: string,
+): Promise<string | null> {
+  return await invoke<{ value?: string }>("plugin:fs-ios|append_to_file", {
+    payload: {
+      path,
+      contents,
+    },
+  }).then((r) => (r.value ? r.value : null));
+}
+
 export async function deleteFile(
   path: string,
   contents: string,
