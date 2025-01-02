@@ -311,6 +311,37 @@ class FSPlugin: Plugin {
     }
 
   }
+  
+  @objc public func currentDir(_ invoke: Invoke) throws {
+    let args = try invoke.parseArgs(FSArgs.self)
+    
+    //perform argument validation here:
+    guard let pathString = args.path else {
+      invoke.reject("Could not parse path from FSArgs")
+      return
+    }
+
+    //If path is empty it will the documents directory
+
+    //Initialize file manager and access documents url
+    let fm = FileManager.default
+    guard let documentsURL = fm.urls(for: .documentDirectory, in: .userDomainMask).first else {
+      invoke.reject("Could not open Documents directory")
+      return
+    }
+
+    var fileURL: URL;
+
+    if pathString == "" {
+      fileURL = documentsURL;
+    } else {
+      fileURL = documentsURL.appendingPathComponent(pathString)
+    }
+      
+    invoke.resolve(["value": "\(fileURL.path)"])
+    return
+
+  }
 
   @objc public func renameDir(_ invoke: Invoke) throws {
     let args = try invoke.parseArgs(RenameArgs.self)

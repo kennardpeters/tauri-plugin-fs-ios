@@ -69,6 +69,14 @@ pub(crate) async fn list_dir<R: Runtime>(
 }
 
 #[command]
+pub(crate) async fn current_dir<R: Runtime>(
+    app: AppHandle<R>,
+    payload: FSRequest,
+) -> Result<FSResponse> {
+    app.fs_ios().current_dir(payload)
+}
+
+#[command]
 pub(crate) async fn delete_dir<R: Runtime>(
     app: AppHandle<R>,
     payload: FSRequest,

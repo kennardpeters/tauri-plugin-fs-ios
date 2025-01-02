@@ -81,6 +81,12 @@ impl<R: Runtime> FsIos<R> {
       .map_err(Into::into)
   }
 
+  pub fn current_dir(&self, payload: FSRequest) -> crate::Result<FSResponse> {
+    self
+      .0
+      .run_mobile_plugin("currentDir", payload)
+      .map_err(Into::into)
+  }
 
   pub fn delete_dir(&self, payload: FSRequest) -> crate::Result<FSResponse> {
     self

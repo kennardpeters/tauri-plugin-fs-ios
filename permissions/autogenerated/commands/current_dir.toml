@@ -1,0 +1,13 @@
+# Automatically generated - DO NOT EDIT!
+
+"$schema" = "../../schemas/schema.json"
+
+[[permission]]
+identifier = "allow-current-dir"
+description = "Enables the current_dir command without any pre-configured scope."
+commands.allow = ["current_dir"]
+
+[[permission]]
+identifier = "deny-current-dir"
+description = "Denies the current_dir command without any pre-configured scope."
+commands.deny = ["current_dir"]

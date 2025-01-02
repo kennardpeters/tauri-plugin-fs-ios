@@ -1,5 +1,5 @@
 <script>
-  import { ping, createFile, readFile, writeFile, appendToFile, deleteFile, createDir, listDir, deleteDir, renameDir } from 'tauri-plugin-fs-ios-api'
+  import { ping, createFile, readFile, writeFile, appendToFile, deleteFile, createDir, listDir, currentDir, deleteDir, renameDir } from 'tauri-plugin-fs-ios-api'
 
 	let response = ''
 
@@ -46,6 +46,10 @@
 	function _renameDir() {
 		renameDir("markdown", "markdown2").then(updateResponse).catch(updateResponse)
 	}
+	
+	function _currentDir() {
+		currentDir("", "").then(updateResponse).catch(updateResponse)
+	}
 
 </script>
 
@@ -76,6 +80,7 @@
       <button on:click="{_listDir}">List Directory</button>
       <button on:click="{_deleteDir}">Delete Directory</button>
       <button on:click="{_renameDir}">Rename Directory</button>
+      <button on:click="{_currentDir}">Current Directory</button>
     </div>
 
     <div>{@html response}</div>

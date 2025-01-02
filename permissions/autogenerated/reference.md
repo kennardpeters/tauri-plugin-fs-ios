@@ -12,6 +12,7 @@ Default permissions for the plugin
 - `allow-list-dir`
 - `allow-delete-dir`
 - `allow-rename-dir`
+- `allow-current-dir`
 
 ## Permission Table
 
@@ -122,6 +123,32 @@ Enables the create_file command without any pre-configured scope.
 <td>
 
 Denies the create_file command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+`fs-ios:allow-current-dir`
+
+</td>
+<td>
+
+Enables the current_dir command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+`fs-ios:deny-current-dir`
+
+</td>
+<td>
+
+Denies the current_dir command without any pre-configured scope.
 
 </td>
 </tr>
