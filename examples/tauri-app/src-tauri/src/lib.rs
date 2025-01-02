@@ -31,7 +31,7 @@ fn greet(name: &str) -> String {
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![greet /*, test_create_file, test_read_file*/])
+        .invoke_handler(tauri::generate_handler![/*greet , test_create_file, test_read_file*/])
         .plugin(tauri_plugin_fs_ios::init())
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
