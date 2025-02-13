@@ -1,6 +1,6 @@
 [package]
 name = "tauri-plugin-fs-ios"
-version = "0.3.0"
+version = "0.4.0"
 authors = [ "You" ]
 description = "A plugin for accessing the filesystem on ios"
 repository = "https://github.com/kennardpeters/tauri-plugin-fs-ios"
@@ -11,7 +11,7 @@ links = "tauri-plugin-fs-ios"
 license = "MIT"
 
 [dependencies]
-tauri = { version = "2.1.0" }
+tauri = { version = "2.2.5" }
 serde = "1.0"
 thiserror = "2"
 
