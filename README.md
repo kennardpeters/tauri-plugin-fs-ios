@@ -96,7 +96,7 @@ import { createDir } from 'tauri-plugin-fs-ios-api'
 
 const test_create_directory = async(path: string) => {
 
-    return await deleteFile(path, "");
+    return await createDir(path, "");
 }
 ```
 ### List Contents of Current Directory
